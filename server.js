@@ -3,6 +3,7 @@ import express from 'express';
 import React from 'react';
 import Router from 'react-router';
 import Helmet from 'react-helmet';
+const ReactDOMServer = require('react-dom/server');
 
 import routes from './routes';
 
@@ -27,7 +28,8 @@ app.get('*', function(req, res) {
 
            Read about why rewinding is necessary on the server:
            https://github.com/nfl/react-helmet#server-usage */
-        let renderedBody = React.renderToString(<Root />);
+        // let renderedBody = React.renderToString(<Root />);
+        let renderedBody = ReactDOMServer.renderToStaticMarkup(<Root />);
         let head = Helmet.rewind();
 
         /* render document with Helmet-rendered `<head>` info
